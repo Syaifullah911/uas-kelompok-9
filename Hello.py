@@ -1,51 +1,66 @@
-# Copyright (c) Streamlit Inc. (2018-2022) Snowflake Inc. (2022)
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
+
+# Baca data dari file CSV
+df = pd.read_csv('Mlbb_Heroes.csv')
+
+# Tampilkan data dalam aplikasi Streamlit
+st.title('Data Hero MLBB')
+st.write(df)
+
+# Buat chart pie dengan Plotly
+fig = px.pie(df, names='Primary_Role', title='Role Hero')
+st.plotly_chart(fig)
+
+fig = px.bar(df, x='Name', y='Esport_Wins', title='Match Esport')
+st.plotly_chart(fig)
 
 import streamlit as st
-from streamlit.logger import get_logger
-
-LOGGER = get_logger(__name__)
-
-
-def run():
-    st.set_page_config(
-        page_title="Hello",
-        page_icon="👋",
-    )
-
-    st.write("# Welcome to Streamlit! 👋")
-
-    st.sidebar.success("Select a demo above.")
-
-    st.markdown(
-        """
-        Streamlit is an open-source app framework built specifically for
-        Machine Learning and Data Science projects.
-        **👈 Select a demo from the sidebar** to see some examples
-        of what Streamlit can do!
-        ### Want to learn more?
-        - Check out [streamlit.io](https://streamlit.io)
-        - Jump into our [documentation](https://docs.streamlit.io)
-        - Ask a question in our [community
-          forums](https://discuss.streamlit.io)
-        ### See more complex demos
-        - Use a neural net to [analyze the Udacity Self-driving Car Image
-          Dataset](https://github.com/streamlit/demo-self-driving)
-        - Explore a [New York City rideshare dataset](https://github.com/streamlit/demo-uber-nyc-pickups)
-    """
-    )
+import pandas as pd
+import numpy as np
+import plotly.express as px
 
 
-if __name__ == "__main__":
-    run()
+# Load data from CSV # Cache the data to improve performance
+def load_data():
+    df = pd.read_csv('MPL_ID_S10.csv')
+    return df
+
+df = load_data()
+
+# Display the DataFrame in Streamlit
+st.title('DATA MPL ID S10')
+st.write(df)
+
+# Create a bar chart with Plotly Express
+fig = px.pie(df, names='Bs_picked', title='Best Picked')
+st.plotly_chart(fig)
+
+fig = px.bar(df, x='Hero', y='T_winrate', title='Win Rate of MPL Mobile Legends Heroes')
+st.plotly_chart(fig)
+
+import streamlit as st
+import pandas as pd
+import numpy as np
+import plotly.express as px
+
+# Load data from CSV
+def load_data():
+    df = pd.read_csv('best-selling-manga.csv')
+    return df
+
+df = load_data()
+
+# Display the DataFrame in Streamlit
+st.title('DATA PENJUALAN MANGA TERBAIK')
+st.write(df)
+
+# Create a bar chart with Plotly Express
+fig = px.pie(df, names='Publisher', title='Manga Publisher')
+st.plotly_chart(fig)
+
+fig = px.bar(df, x='Manga series', y='Approximate sales in million(s)', title='Best Selling Manga')
+st.plotly_chart(fig)
+
